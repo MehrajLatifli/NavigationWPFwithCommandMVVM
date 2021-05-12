@@ -1,0 +1,39 @@
+﻿<Window x:Class="NavigationWPFwithCommandMVVM.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NavigationWPFwithCommandMVVM"
+        mc:Ignorable="d"
+        
+              xmlns:views="clr-namespace:NavigationWPFwithCommandMVVM.Views"
+        xmlns:vm="clr-namespace:NavigationWPFwithCommandMVVM.ViewModels"
+        
+        Title="MainWindow" Height="450" Width="800">
+
+    <Window.DataContext>
+        <vm:MainVM/>
+    </Window.DataContext>
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type vm:A_VM}">
+            <views:A_UserControl/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:B_VM}">
+            <views:B_UserControl/>
+        </DataTemplate>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Button Grid.Row="0" Content="Go to A" Command="{Binding GotoAcommand}"></Button>
+        <Button Grid.Row="1" Content="Go to B" Command="{Binding GotoBcommand}"></Button>
+        <ContentControl Grid.Row="2" Content="{Binding SelectedViewModel}"></ContentControl>
+        <ContentControl Grid.Row="3" Content="{Binding SelectedViewModel2}"></ContentControl>
+    </Grid>
+</Window>
